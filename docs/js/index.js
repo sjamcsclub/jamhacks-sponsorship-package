@@ -2,6 +2,10 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ease = {
@@ -37,24 +41,24 @@ var GooeyTransition = function () {
   _createClass(GooeyTransition, [{
     key: "getPath",
     value: function getPath(easeQuad, easeQuart) {
+      easeQuad += 27.5;
+      easeQuart += 27.5;
       return "\n      M 0 0\n      V " + easeQuart + "\n      Q 12.5 " + easeQuart + " 25 " + easeQuad + "\n      T 50 " + easeQuad + "\n      T 75 " + easeQuad + "\n      T 100 " + easeQuart + "\n      V 0\n    ";
     }
   }, {
     key: "render",
     value: function render(t) {
-      var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, this.limit, $(window).height());
-      var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, this.limit, $(window).height());
-      var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, this.limit, $(window).height());
-      var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, this.limit, $(window).height());
+      var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100);
+      var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100);
+      var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100);
+      var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100);
 
-      var svgHeight = easeQuad + easeQuad - easeQuart;
-      if (isMobile) {
-        this.svg.css("height", svgHeight * 1.1);
-      } else {
-        this.svg.css("height", svgHeight);
-      }
+      var svgHeight = this.svg.parent().height() + 5;
+      this.svg.css("height", svgHeight);
 
-      this.svg.attr("viewBox", "0 0 100 " + svgHeight);
+      // console.log(svgHeight);
+
+      this.svg.attr("viewBox", "0 0 100 100");
 
       $(this.paths[0]).attr("d", this.getPath(easeQuad, easeQuart));
       $(this.paths[1]).attr("d", this.getPath(easeQuad2, easeQuart2));
@@ -64,87 +68,40 @@ var GooeyTransition = function () {
   return GooeyTransition;
 }();
 
-var landingTransitionScale = 1.5;
-var landingTransition = new GooeyTransition("#gooey-bg");
+var GooeyTransitionReverse = function (_GooeyTransition) {
+  _inherits(GooeyTransitionReverse, _GooeyTransition);
 
-// const footerTransition = new GooeyTransition(0.9, [footer1, footer2]);
+  function GooeyTransitionReverse(svg) {
+    _classCallCheck(this, GooeyTransitionReverse);
 
-// Update anytime page is scrolled.
-$(window).scroll(function () {
-  // console.log($(".active").attr("href"));
+    var _this = _possibleConstructorReturn(this, (GooeyTransitionReverse.__proto__ || Object.getPrototypeOf(GooeyTransitionReverse)).call(this, svg));
 
-  var t = $(window).scrollTop() / screen.height;
+    _this.gap = -_this.gap;
+    return _this;
+  }
 
-  landingTransition.render(mathx.clamp(t * landingTransitionScale, 0, 1));
-
-  // footerTransition.render(t*2 - 4);
-
-  // Rescale landing
-  var landingHeight = mathx.scale(mathx.clamp(t, 0, 1 / landingTransitionScale), 1 / landingTransitionScale, 0, 0, $(this).height());
-  $("#landing").css("height", landingHeight);
-
-  // Fade in/out nav-header
-  if ($("#nav-header").queue().length === 0) {
-    if (t > 0.49) {
-      $("#nav-header").fadeIn(200);
-    } else if (t < 0.5) {
-      $("#nav-header").fadeOut(200);
+  _createClass(GooeyTransitionReverse, [{
+    key: "getPath",
+    value: function getPath(easeQuad, easeQuart) {
+      easeQuad += 78.5;
+      easeQuart += 78.5;
+      return "\n      M 0 100\n      V " + easeQuart + "\n      Q 12.5 " + easeQuart + " 25 " + easeQuad + "\n      T 50 " + easeQuad + "\n      T 75 " + easeQuad + "\n      T 100 " + easeQuart + "\n      V 100\n    ";
     }
-  }
-  if (isMobile) {
-    if ($("#gooey-bg").queue().length === 0) {
-      if (t > 0.5) {
-        $("#gooey-bg").fadeOut(300);
-      } else if (t < 0.49) {
-        $("#gooey-bg").fadeIn(200);
-      }
-    }
-  }
-});
+  }]);
 
-$(window).resize(function () {
-  landingTransition.limit = $("#nav-header").height();
-  if (isMobile) {
-    landingTransition.limit += $(window).height() / 11.6;
-  }
+  return GooeyTransitionReverse;
+}(GooeyTransition);
 
-  var scrollSpyOffset = $("#nav-header").height() + parseInt($("section").css("margin-bottom")) / 2;
-  $("body").attr("data-offset", scrollSpyOffset);
+// const landingTransitionScale = 1.5;
 
-  $(this).scroll(); // Trigger a scroll update
-}).resize();
 
-$(".nav-link").click(function () {
-  var target = $(this).attr("href");
-  var offset = ($("#nav-header").height() + parseInt($("section").css("margin-bottom"))) / 2;
-  console.log("target", target);
-  $("html,body").stop().animate({
-    scrollTop: $(target).offset().top - offset
-  }, 400, "easeInOutQuad");
-  return false;
-});
+var landingTransition = new GooeyTransition("#landing-transition");
+var contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function () {
-  if (isMobile) {
-    $("#gooey-bg").css("top", "-10%");
-  }
+  // statically render gooey transition
+  landingTransition.render(0.72);
+  contactTransition.render(0.833);
+
+  // window.print();
 });
-
-// On DOM ready
-// $(function(){
-
-//   var $w = $(window),
-//       $background = $("#gooey-bg");
-
-//   // Fix background image jump on mobile
-//   if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-//     $background.css({"top": "auto", "bottom": 0});
-
-//     $w.resize(sizeBackground);
-//     sizeBackground();
-//   }
-
-//   function sizeBackground() {
-//      $background.height(screen.height);
-//   }
-// });

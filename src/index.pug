@@ -1,10 +1,11 @@
-- var loremipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+mixin mailto(email)
+  a(href="mailto:"+email)= email
 
 doctype html
 html
   head
     meta(charset="UTF-8")
-    title JAMHacks
+    title JAMHacks Sponsorship Package
     meta(name="viewport" content="width=device-width, initial-scale=1")
     //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css")
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
@@ -19,101 +20,261 @@ html
     link(rel="stylesheet" href="css/style.css")
 
   body(data-spy="scroll" data-target="#nav-header" data-offset="10")
-    #landing
-      #landing-wrapper
-        img#landing-logo(src="img/JAMHacks.svg" alt="JAMHacks")
-        h2 April 9, 2016
-        h3 Sir John A. Macdonald Secondary School, Waterloo
-        a.btn.btn-outline-secondary.btn-lg.landing-button(href="/register") Register
-    svg#gooey-bg(width="100%" height="100%" viewBox="0 0 100 1" preserveAspectRatio="none")
-      //- defs
-      //-   filter(xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%")
-      //-     feGaussianBlur(in="SourceAlpha" stdDeviation="1.5")
-      //-     feOffset(dx="0" dy="4" result="offsetblur")
-      //-     feComponentTransfer
-      //-       feFuncA(type="linear" slope="0.3")
-      //-     feMerge
-      //-       feMergeNode
-      //-       feMergeNode(in="SourceGraphic")
+    .page
+      .page-break-fix &nbsp;
+      //- .svg-wrapper
+      svg#landing-transition(width="100%" height="100%" viewBox="0 0 100 1" preserveAspectRatio="none")
+        defs
+          filter(xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%")
+            feGaussianBlur(in="SourceAlpha" stdDeviation="1.5")
+            feOffset(dx="0" dy="0" result="offsetblur")
+            feComponentTransfer
+              feFuncA(type="linear" slope="0.2")
+            feMerge
+              feMergeNode
+              feMergeNode(in="SourceGraphic")
+        path(id="path1" class="light-path" d="" filter="url(#dropshadow)")
+        path(id="path2" class="color-path" d="")
+      .inner-page
+        .landing
+          .landing-logo
+            img(src="img/JAMHacks.svg" alt="JAMHacks")
+          .landing-text
+            h1 JAMHacks Sponsorship
+            h3 #[span.date April 9, 2017] #[span.time 9am&ndash;9pm]
+            h3 Sir John A. Macdonald Secondary School #[br] Waterloo, Ontario
+            h2 
+              a(href="https://jamhacks.ca/") jamhacks.ca #[br]
+              +mailto("sponsor@jamhacks.ca")
 
-      path(id="path1" class="light-path" d="")
-      path(id="path2" class="color-path" d="")
-      //- path(id="footer1" class="light-path" d="")
-      //- path(id="footer2" class="color-path" d="")
+        .after-landing
+          section
+            h2 What is JAMHacks?
+            p JAMHacks is Waterloo's first high school hackathon. On April 9th, we are bringing together approximately 100 students from high schools all over Ontario for 12 hours of learning, creating and innovating. Participants ("hackers") will get the entire 12 hours to invent and build a software or hardware project, and then show it off to a panel of judges as well as their fellow hackers. 
+            p As a high school hackathon, our aim is to inspire more high school students to explore innovative careers in technology. Your company can help us show them what "Waterloo innovation" is all about.
+          section
+            h2 Why Sponsor JAMHacks?
+            p #[b Connect with young computer scientists.] For many participants, JAMHacks will be their first hackathon, a special and unforgettable experience. This is a unique opportunity for you to make an early impression on our participants.
+            p #[b Branding and Exposure.] Your company will be recognised for supporting the next generation of developers and makers. Additionally, if you bring your API or hardware product, participants will get firsthand experience with your product and are likely to keep using it in the future. 
+            p #[b Recruit.] We are gathering Waterloo Region's brightest and most talented young developers and engineers into one place, and giving them a perfect environment to demonstrate their skills. See our available perks for recruiting below or contact us—Everything is negotiable.
+            p Note: Monetary contributions are tax deductible through the Waterloo Education Foundation Inc., a registered charitable foundation which is part of the Waterloo Region District School Board.
 
-    #nav-header
-      ul.nav
-        li.nav-item
-          a.nav-link(href="#about") About
-        li.nav-item
-          a.nav-link(href="#faq") FAQ
-        li.nav-item
-          a.nav-link(href="#sponsors") Sponsors
-        li.nav-item.nav-register
-          a.nav-link(href="/register") Register
+    .page
+      .page-break-fix &nbsp;
+      .inner-page
+        section#tier-table
+          //- h1 Sponsorship Tiers
+          table
+            tbody
+              tr.first-of-section
+                td.subheading(colspan="3") Sponsorship Tiers
+                td.tier-name Peach
+                td.tier-name Grape
+                td.tier-name Strawberry
+                td.tier-name Blueberry (Co-Host)
+              tr.first-of-section
+                td.perk(colspan="3") Amount (or equivalent goods/services)
+                td $400
+                td $800
+                td $1600
+                td $4000
+              tr.first-of-section
+                td.subheading(colspan="7") Your Branding
+              tr.first-of-section
+                td.perk(colspan="3") Logo on Website and Posters
+                td Small
+                td Medium
+                td Large
+                td Huge
+              tr
+                td.perk(colspan="3") Logo on T-Shirts (if funding permits)
+                td Small
+                td Medium
+                td Large
+                td Huge
+              tr
+                td.perk(colspan="3") Distribute Swag
+                td &#10004;
+                td &#10004;
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Thanked at Opening Ceremony
+                td &#10004;
+                td &#10004;
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Shout-outs on Social Media
+                td 
+                td &#10004;
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Meal Sponsored by [You]*
+                td 
+                td 
+                td &#10004;
+                td 
+              tr
+                td.perk(colspan="3") JAMHacks, Co-Hosted by [You]**
+                td 
+                td 
+                td 
+                td &#10004
+              tr.first-of-section
+                td.subheading(colspan="7") Your Involvement
+              tr.first-of-section
+                td.perk(colspan="3") Send Mentors/Evangelists
+                td Max. 1
+                td Max. 2
+                td Max. 3
+                td Unlimited
+              tr
+                td.perk(colspan="3") Sponsor Booth
+                td 
+                td &#10004;
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Company Judge
+                td 
+                td 
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Direct involvement in planning
+                td 
+                td 
+                td 
+                td &#10004;
+              tr
+                td.perk(colspan="3") Remarks at Closing Ceremony
+                td 
+                td 
+                td 
+                td &#10004
+              tr.first-of-section
+                td.subheading(colspan="7") Your Products
+              tr.first-of-section
+                td.perk(colspan="3") Demo or Talk at Opening Ceremony
+                td 
+                td Short #[br] &nbsp;&nbsp;&nbsp;&nbsp;(2&nbsp;min)***
+                td Short #[br] (2&nbsp;min)
+                td Long #[br] (5&nbsp;min)
+              tr
+                td.perk(colspan="3") Run a Workshop
+                td 
+                td 
+                td(rowspan="2") &#10004; (Pick one)
+                td &#10004;
+              tr
+                td.perk(colspan="3") Custom Award (ex. API Prize)
+                td 
+                td 
+                td &#10004
+              tr.first-of-section
+                td.subheading(colspan="7") Recruiting
+              tr.first-of-section
+                td.perk(colspan="3") Distribute Recruiting Material
+                td 
+                td &#10004;
+                td &#10004;
+                td &#10004;
+              tr
+                td.perk(colspan="3") Access to Resumes and GitHub/LinkedIn Profiles
+                td 
+                td Post-event
+                td Post-event
+                td Pre-event
+              tr.last-of-table
+                td.perk(colspan="3") Send Email to All Participants
+                td 
+                td 
+                td 1
+                td 2
 
-    #page
-      main
-        .container
-          section#about
-            .row.justify-content-center
-              .col
-                h1 About
-            .row.justify-content-center
-              .col-lg-9
-                p.tagline JAMHacks is Waterloo's first high school hackathon. On April&nbsp;9th, come join 100 other high school students for 12&nbsp;hours of creativity, innovation and fun!
-            .row.justify-content-center
-              .col-md-9.col-lg-7
-                .map-container.embed-responsive
-                  iframe.embed-responsive-item(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11582.034386373409!2d-80.59938464999999!3d43.470855349999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x375a3d40ac31533c!2sSir+John+A.+MacDonald+Secondary+School!5e0!3m2!1sen!2sca!4v1485054414351" allowfullscreen)
+          p.footnotes.
+            *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Available to first two Strawberry sponsors only. #[br]
+            **&nbsp;&nbsp;&nbsp;Available to first Blueberry sponsor only. #[br]
+            ***&nbsp;If time permits. #[br]
 
+    //- .page
+      .page-break-fix &nbsp;
+      .inner-page
+        section#tier-descriptions
+          section
+            h3 Peach #[span.price $400]
+            ul
+              li Logo on our website, posters, and other promotional material.
+              li Logo on t-shirts, handed out to all participants (if funding permits).
+              li Distribute branded items (swag) in welcoming packages and during the event.
+              li Your generous contribution will be acknowledged at the opening ceremony by our MC.
+              li Send one mentor or company evangelist (see #[b Mentors]).
+          section
+            h3 Grape #[span.price $800]
+            p.short Everything in the Peach tier, plus:
+            ul
+              li Logo displayed more prominently everywhere.
+              li Your generous contribution will be acknowledged on our social media, along with a short blurb about your company.
+              li Send one #[i additional] mentor or company evangelist, for a maximum of two.
+              li A table/booth in a highly-visible location (see #[b Sponsor Booth]).
+              li A short (approx. 2 min) speech or demo of your product at opening ceremony, if time permits.
+              li Distribute recruiting material (pamphlets etc.) in welcoming packages and during the event.
+              li Post-event access to resumes and GitHub/LinkedIn portfolios of all hackers who provided them to us for recruiting purposes.
+          section
+            h3 Strawberry #[span.price $1600]
+            p.short Everything in the above tiers, plus:
+            ul
+              li Logo displayed even more prominently everywhere.
+              li For the first two sponsors at this tier, present a meal (lunch or dinner)—The MC will announce that the meal is courtesy of your company.
+              li Send one #[i additional] mentor or company evangelist, for a maximum of three.
+              li A short (approx. 2 min) speech or demo of your product at opening ceremony (guaranteed).
+              li Company representative on the judging panel (see #[b Company Judge]).
+              li Opportunity to either host a #[b workshop] OR offer a #[b custom award].
+              li Send one email to all participants, either before or after the event.
+          section
+            h3 Blueberry (Co-Host) #[span.price $4000]
+            p.short Everything in the above tiers, plus:
+            ul
+              li Logo displayed in most prominent position everywhere.
+              li For the first sponsor at this tier, naming rights for the event to be titled "JAMHacks, Co-Hosted by [Your&nbsp;Company]."
+              li Opportunity for involvement in planning the event (through one or more pre-event meetings with the organizing team).
+              li A longer (approx. 5 min) speech or demo of your product at opening ceremony.
+              li Opportunity to both host a #[b workshop] AND offer a #[b custom award].
+              li A short speech at awards (closing) ceremony.
+              li Send up to two emails to all participants. You may send both before the event, both after the event, or one before and one after the event.
 
-          section#faq
-            .row.justify-content-center
-              .col
-                h1 FAQ
-            .row
-              .col-md-6
-                h2 What is JAMHacks?
-                p JAMHacks is a hackathon&mdash;a 12-hour-long "innovation marathon." You will work in teams of up to 4 to create an app, game, website, robot, or whatever your heart desires.
-              .col-md-6
-                h2 What if I don't know how to code?
-                p No problem! A hackathon is a great place to pick up new skills. We'll have workshops and mentors to guide you from your first line of code to writing your own app or website!
-              .col-md-6
-                h2 Who can participate?
-                p JAMHacks is open to any high school student in Ontario!
-              .col-md-6
-                h2 Is there any cost?
-                p Nope! The event will be free for all participants.
-                //- thanks to our generous sponsors
-              .col-md-6
-                h2 How many people will be accepted?
-                p We are expecting to have enough room for everyone who wants to come!
-              .col-md-6
-                h2 What should I bring?
-                p You should bring your laptop, phone, chargers, and some form of photo ID (students cards are fine). We will provide food, snacks and drinks!
-                //- (we will be able to provide a very limited number of computers)
-              .col-md-6
-                h2 Is there a code of conduct?
-                p Yes. In short, be respectful to other people. You can read the full version #[a(href="/conduct") here].
-              .col-md-6
-                h2 I have another question.
-                p Feel free to email us at #[a(href="mailto:hello@jamhacks.ca") hello@jamhacks.ca].
-                //- or send us a message on #[a(href="FACEBOOK EVENT") Facebook].
+    .page
+      //- .svg-wrapper
+      svg#contact-transition(width="100%" height="100%" viewBox="0 0 100 1" preserveAspectRatio="none")
+        defs
+          filter(xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%")
+            feGaussianBlur(in="SourceAlpha" stdDeviation="1.5")
+            feOffset(dx="0" dy="0" result="offsetblur")
+            feComponentTransfer
+              feFuncA(type="linear" slope="0.2")
+            feMerge
+              feMergeNode
+              feMergeNode(in="SourceGraphic")
+        path(id="path1" class="light-path" d="" filter="url(#dropshadow)")
+        path(id="path2" class="color-path" d="")
+      .inner-page
+        section#perk-details
+          h3 Mentors
+          p A mentor is a great way to interact with and gain recognition among hackers. The people and companies that will be remembered most by hackers will be those who helped them through any roadblocks and bugs they encounter, and guided them to success.
+          h3 Sponsor Booth
+          p Your booth is your company's physical representation at our hackathon. We recommend that you send at least one representative (mentor/evangelist) from your company who can tell hackers about your company and answer their questions. To best utilize your space, we recommend providing swag (pens, notepads, stickers, stress balls, t-shirts, etc.) for attendees to pick up when they visit your booth.
+          h3 Company Judge
+          p You or a representative from your company will have the opportunity to see all of the projects and help select the winners (including the winner of your custom award if you choose to provide one)! We recommend that judges have some background in technology or entrepreneurship to provide the best possible judging for our event.
+          h3 Workshop
+          p By hosting a workshop or "tech talk", you can educate our hackers and promote your company's image at the same time! You could teach hackers how to use your product, teach a general skill, or discuss technology or entrepreneurship.
+          h3 Custom Award
+          p This could be an API prize ("Best use of [Your API]"), or it could be a more general prize, like "Best Hardware Hack" or "Best Environmental Impact Hack". You will provide the reward but we will credit the value of your reward (cash value or equivalent retail value) towards your sponsorship contribution, up to a maximum of $500. If you wish to provide an intangible reward, we can discuss how to credit it towards your sponsorship.
+        section#contact
+          h2 Interested?
+          p Send us an email at #[+mailto("sponsor@jamhacks.ca")]. All sponsorships are negotiable and we would be more than happy to discuss details, or work out a custom sponsorship opportunity for you.
 
-
-          section#sponsors
-            .row.justify-content-center
-              .col
-                h1 Sponsors
-            .row.justify-content-center
-              .col-lg-9
-                p Interested in sponsoring? Shoot us an email at #[a(href="mailto:sponsor@jamhacks.ca") sponsor@jamhacks.ca], or check out our #[a(href="sponsorship.pdf") sponsorship&nbsp;package].
-              
-      footer
-        .container
-          .col
-            p.copyright &copy; 2017 JAMHacks. Website by Ethan Guo.
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous")

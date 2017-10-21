@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo|Nunito:300,400,600,800');
+@import url('https://fonts.googleapis.com/css?family=Baloo|Nunito:200,300,400,600,800');
 
 // $hue-primary: 255; //degrees
 // $sat-primary: 67%;
@@ -9,6 +9,7 @@ $color-primary: #493A98;
 $color-bg: $color-primary;
 $color-primary-light: lighten($color-bg, 12.5%);
 $color-primary-lighter: lighten($color-bg, 20%);
+$color-primary-lightest: lighten($color-bg, 37.5%);
 
 $font-primary: "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
 
@@ -16,36 +17,79 @@ $font-headings: Baloo, $font-primary;
 
 $on-color: rgba(0,0,0, 0.3);
 $on-white: rgba(0,0,0, 0.15);
-$drop-shadow: 0 0.25rem;
-$drop-shadow-small: 0 0.2rem;
+$drop-shadow: 0 0.04in;
+$drop-shadow-small: 0 0.2em;
 
-html {
-  // overflow: hidden;
-  // height: 100%;
-  // width: 100%;
+@page {
+  size: letter;
+  margin: 0;
 }
 
 body {
-  // Fix for jumpy effects caused by url bar showing/hiding on Android Chrome.
-  // TODO: Try using screen.height instead of window height in js (See http://stackoverflow.com/a/31330874/1670161).
-  // position: fixed;
-  // overflow-y: scroll;
-  // -webkit-overflow-scrolling: touch;
-  // height: 100%;
-  
-  // background-color: white;
-  // min-height: 400%;
-  font: 13pt $font-primary;
+  font: 12pt $font-primary;
   line-height: 13pt * 4/3;
-  // overflow: hidden;
-}
-::selection {
-  background-color: $color-primary-lighter;
 }
 
-#gooey-bg {
+.page {
+  position: relative;
+  width: 8.5in;
+  min-height: 11in;
+  margin: 0.5in auto;
+  border: 1px #CCCCCC solid;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.inner-page {
   z-index: 200;
-  position: fixed;
+  position: absolute;
+  top: 0;
+  width: 7.5in;
+  height: 10in;
+  margin: 0.5in;
+  border: 1px #CCCCCC dotted;
+}
+
+.page-break-fix {
+  visibility: hidden;
+}
+
+@media print {
+  html, body {
+    width: 8.5in;
+    height: 11in;
+  }
+  .page {
+    margin: 0;
+    border: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+  .inner-page {
+    border: initial;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    &::first-letter {
+      padding: 0;
+    }
+  }
+}
+
+// .svg-wrapper {
+//   height: 100%;
+//   width: 100%;
+//   z-index: 100;
+//   position: absolute;
+//   top: 0; right: 0; bottom: 0; left: 0;
+//   overflow: hidden;
+// }
+
+svg {
+  z-index: 100;
+  position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   // border: 1px solid black;
   path {
@@ -58,154 +102,162 @@ body {
   }
 }
 
-#landing {
-  z-index: 300;
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+
+.landing {
+  // position: absolute;
+  // top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  // overflow: hidden;
-  // background-color: green;
-  &-wrapper {
+  justify-content: space-between;
+
+  .landing-logo img {
+    // position: relative;
+    // left: 10%;
+    width: 7.5in * 1/2;
+    // margin-bottom: 2rem;
+  }
+  .landing-text {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  &-logo {
-    position: relative;
-    left: 10%;
-    height: 100vh * 1/3;
-    max-width: 75vw;
-    margin-bottom: 2rem;
-  }
-  h2, h3 {
-    color: white;
+
+    // margin-left: auto;
+
     text-align: center;
-    text-shadow: $drop-shadow $on-color;
-    margin-bottom: 0.75rem;
+
+    h1, h2, h3 {
+      color: white;
+      // text-align: center;
+      margin-bottom: 8pt;
+    }
+    h1 {
+      font: 700 24pt $font-primary;
+    }
+    h3 {
+      font: 300 14pt $font-primary;
+      .time {
+        margin-left: 1em;
+      }
+    }
+    h2 {
+      font: 600 18pt $font-primary;
+      // text-align: left;
+    }
+    a {
+      color: white;
+      &:hover, &:active, &:focus {
+        color: $color-primary-lightest;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.after-landing {
+  margin-top: 10in * 1/6;
+}
+
+// #about {
+//   .tagline {
+//     // font-weight: 300;
+//     font-size: 150%;
+//     line-height: 150%;
+//     text-align: center;
+//     margin-bottom: 1.5em;
+//   }
+// }
+
+// .container-fluid.no-padding {
+//   padding: 0;
+//   .col-6:first-of-type {
+//     padding-left: 0;
+//   }
+// }
+
+section {
+  h1 {
+    font: 300 24pt $font-primary;
+    text-align: center;
   }
   h2 {
-    font: 21pt $font-primary;
+    font: 300 24pt $font-primary;
   }
   h3 {
-    font: 300 15pt $font-primary;
+    font: 300 18pt $font-primary;
   }
-
-  .landing-button {
-    color: white;
-    border-color: white;
-    border-radius: 100em;
-    border-width: 2px;
-    font: 15pt $font-primary;
-    text-shadow: $drop-shadow $on-color;
-    box-shadow: $drop-shadow $on-color, $drop-shadow $on-color inset;
-    &:hover, &:active, &:focus {
-      color: $color-primary-light;
-      background-color: white;
-      border-color: white;
-      text-shadow: none;
-      box-shadow: $drop-shadow $on-color;
-    }
-  }
-}
-
-#nav-header {
-  background-color: $color-primary-light;
-  display: none; // fade in by js
-  z-index: 400;
-  position: fixed;
-  top: 0; right: 0; left: 0;
-  
-  .nav {
-    // padding: 0.75em 2.5em 0;
-    // font-size: 12pt;
-    // display: flex;
-    // justify-content: flex-start;
-  }
-  .nav-tabs {
-    border-bottom: none;
-  }
-  .nav-link {
-    color: white;
-    border: none;
-    padding: 1em 1.5em;
-    &.active {
-      background-color: $color-primary-lighter;
-    }
-  }
-  .nav-register {
-    font-weight: 800;
-    // margin-left: auto;
-  }
-}
-
-#page {
-  z-index: 100;
-  position: relative;
-  top: 75vh; right: 0; bottom: 0; left: 0;
-  
-  h1 {
-    font-size: 40pt;
-    line-height: 40pt * 4/3;
-    text-align: center;
-    color: $color-primary;
-    font-family: $font-headings;
-    text-shadow: $drop-shadow-small $on-white;
-  }
-  section {
-    margin-bottom: 12.5vh;
-  }
-  // .map-container {
-  //   position: relative;
-  //   padding-top: 30px;
-  //   padding-bottom: 50%;
-  //   height: 0;
-  //   overflow: hidden;
+  // em {
+  //   font-style: normal;
+  //   font-weight: 700;
   // }
 }
 
-#about {
-  .tagline {
-    // font-weight: 300;
-    font-size: 150%;
-    line-height: 150%;
-    text-align: center;
-    margin-bottom: 1.5em;
+#tier-table {
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 7.5in;
+    margin: 0 auto 10pt;
   }
-  .map-container::before {
-    padding-top: percentage(1 / 1.618);
+  
+  td {
+    // border: 1px dotted violet;
+
+    padding: 4pt 4pt;
+    text-align: center;
+
+    &:first-of-type {
+      text-align: left;
+      padding-left: 10pt;
+    }
+    // &:last-of-type {
+    //   padding-right: 8pt;
+    // }
+    &.tier-name, &.subheading {
+      font-weight: 700;
+      color: white;
+      background-color: $color-primary-lighter;
+    }
+  }
+  tr {
+    border-top: 1px solid #D8D8D8;
+
+    &.first-of-section {
+      border-top: none;
+    }
+    &.last-of-table {
+      border-bottom: 1px solid #D8D8D8;
+    }
+  }
+
+  p.footnotes {
+    margin-top: 16pt;
   }
 }
 
-#faq {
-  h2 {
-    font-size: 150%;
-    font-weight: 600;
-    margin-bottom: 0.5em;
+#tier-descriptions {
+  font-size: 11pt;
+  line-height: 11.5pt * 4/3;
+  p.short {
+    margin-bottom: 8pt;
   }
-  p {
-    margin-bottom: 1.5em;
-  }
-  .centered {
-    text-align: center;
+  .price {
+    font-weight: 200;
+    margin-left: 0.5em;
   }
 }
 
-#sponsors {
-  p {
-    font-size: 120%;
-    line-height: 150%;
-    text-align: center;
-  }
-}
-
-footer {
-  margin-top: 10em;
-  .copyright {
-    text-align: center;
-    padding-bottom: 2em;
-    margin-bottom: 0;
+#contact {
+  z-index: 300;
+  // font: 300 16pt $font-primary;
+  color: white;
+  margin-top: 1.15in;
+  a {
+    color: white;
+      text-decoration: underline;
+    &:hover, &:active, &:focus {
+      color: $color-primary-lightest;
+      text-decoration: underline;
+    }
   }
 }

@@ -27,6 +27,8 @@ class GooeyTransition {
     this.gap = 0.05;
   }
   getPath(easeQuad, easeQuart) {
+    easeQuad += 27.5;
+    easeQuart += 27.5;
     return `
       M 0 0
       V ${easeQuart}
@@ -38,108 +40,51 @@ class GooeyTransition {
     `;
   }
   render(t) {
-    var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, this.limit, $(window).height());
-    var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, this.limit, $(window).height());
-    var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, this.limit, $(window).height());
-    var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, this.limit, $(window).height());
+    var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100);
+    var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100);
+    var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100);
+    var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100);
     
-    var svgHeight = easeQuad + easeQuad - easeQuart;
-    if (isMobile) {
-      this.svg.css("height", svgHeight*1.1);
-    } else {
-      this.svg.css("height", svgHeight);
-    }
+    var svgHeight = this.svg.parent().height()+5;
+    this.svg.css("height", svgHeight);
 
-    this.svg.attr("viewBox", `0 0 100 ${svgHeight}`);
+    // console.log(svgHeight);
+
+    this.svg.attr("viewBox", `0 0 100 100`);
     
     $(this.paths[0]).attr("d", this.getPath(easeQuad, easeQuart));
     $(this.paths[1]).attr("d", this.getPath(easeQuad2, easeQuart2));
   }
 }
 
-const landingTransitionScale = 1.5;
-const landingTransition = new GooeyTransition("#gooey-bg");
-
-// const footerTransition = new GooeyTransition(0.9, [footer1, footer2]);
-
-// Update anytime page is scrolled.
-$(window).scroll(function() {
-  // console.log($(".active").attr("href"));
-  
-  var t = $(window).scrollTop() / screen.height;
-  
-  landingTransition.render(mathx.clamp(t*landingTransitionScale, 0, 1));
-  
-  // footerTransition.render(t*2 - 4);
-  
-  // Rescale landing
-  var landingHeight = mathx.scale(mathx.clamp(t, 0, 1/landingTransitionScale), 1/landingTransitionScale, 0, 0, $(this).height());
-  $("#landing").css("height", landingHeight);
-  
-  // Fade in/out nav-header
-  if ($("#nav-header").queue().length === 0) {
-    if (t > 0.49) {
-      $("#nav-header").fadeIn(200);
-    }
-    else if (t < 0.5) {
-      $("#nav-header").fadeOut(200);
-    }
+class GooeyTransitionReverse extends GooeyTransition {
+  constructor(svg) {
+    super(svg);
+    this.gap = -this.gap;
   }
-  if (isMobile) {
-    if ($("#gooey-bg").queue().length === 0) {
-      if (t > 0.5) {
-        $("#gooey-bg").fadeOut(300);
-      }
-      else if (t < 0.49) {
-        $("#gooey-bg").fadeIn(200);
-      }
-    }
+  getPath(easeQuad, easeQuart) {
+    easeQuad += 78.5;
+    easeQuart += 78.5;
+    return `
+      M 0 100
+      V ${easeQuart}
+      Q 12.5 ${easeQuart} 25 ${easeQuad}
+      T 50 ${easeQuad}
+      T 75 ${easeQuad}
+      T 100 ${easeQuart}
+      V 100
+    `;
   }
-});
+}
 
-$(window).resize(function() {
-  landingTransition.limit = $("#nav-header").height();
-  if (isMobile) {
-    landingTransition.limit += $(window).height()/11.6;
-  }
-
-  var scrollSpyOffset = $("#nav-header").height() + parseInt($("section").css("margin-bottom")) / 2;
-  $("body").attr("data-offset", scrollSpyOffset);
-
-  $(this).scroll(); // Trigger a scroll update
-}).resize();
-
-$(".nav-link").click(function() {
-  var target = $(this).attr("href");
-  var offset = ($("#nav-header").height() + parseInt($("section").css("margin-bottom"))) / 2;
-  console.log("target", target);
-  $("html,body").stop().animate({
-    scrollTop: $(target).offset().top - offset
-  }, 400, "easeInOutQuad");
-  return false;
-});
+// const landingTransitionScale = 1.5;
+const landingTransition = new GooeyTransition("#landing-transition");
+const contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function() {
-  if (isMobile) {
-    $("#gooey-bg").css("top", "-10%");
-  }
+  // statically render gooey transition
+  landingTransition.render(0.72);
+  contactTransition.render(0.833);
+
+  // window.print();
 });
-
-// On DOM ready
-// $(function(){
-
-//   var $w = $(window),
-//       $background = $("#gooey-bg");
-
-//   // Fix background image jump on mobile
-//   if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-//     $background.css({"top": "auto", "bottom": 0});
-
-//     $w.resize(sizeBackground);
-//     sizeBackground();
-//   }
-
-//   function sizeBackground() {
-//      $background.height(screen.height);
-//   }
-// });
