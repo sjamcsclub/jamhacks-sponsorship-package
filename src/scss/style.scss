@@ -78,6 +78,11 @@ body {
   visibility: hidden;
 }
 
+a {
+  color: $color-primary-light;
+  font-weight: 600;
+}
+
 @media print {
   html, body {
     width: 8.5in;

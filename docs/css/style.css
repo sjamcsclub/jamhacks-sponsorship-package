@@ -46,6 +46,10 @@ body {
 .page-break-fix {
   visibility: hidden; }
 
+a {
+  color: #6554be;
+  font-weight: 600; }
+
 @media print {
   html, body {
     width: 8.5in;

@@ -3,7 +3,7 @@
 - versionNumber = "v0 " + isoDate
 
 mixin mailto(email)
-  a(href="mailto:"+email)= email
+  a(href="mailto:"+email, target="_blank")= email
 
 doctype html
 html
@@ -71,7 +71,7 @@ html
           p Note: Monetary contributions are tax deductible through the Waterloo Education Foundation Inc., a registered charitable foundation which is part of the Waterloo Region District School Board.
         section
           h2 Past Events
-          p In April 2017, we hosted JAMHacks, Waterloo's first hackathon organized entirely by high school students, for high school students. Over 100 students, some from as far as Toronto, Mississauga and Windsor, came out for the 12-hour event. Even in such a short amount of time, our hackers created a wide array of impressive projects, such as a #[a(href="https://devpost.com/software/e-tabula") light-up chessboard].
+          p In April 2017, we hosted JAMHacks, Waterloo's first hackathon organized entirely by high school students, for high school students. Over 100 students, some from as far as Toronto, Mississauga and Windsor, came out for the 12-hour event. Even in such a short amount of time, our hackers created a wide array of impressive projects, such as a #[a(href="https://devpost.com/software/e-tabula" target="_blank") physical light-up chessboard].
           //- Also workshops * see SYNK's devpost
       .page-footer
         .page-number 2
