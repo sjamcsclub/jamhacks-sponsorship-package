@@ -35,7 +35,9 @@ var browsers = "> 1%, last 2 versions, IE >= 9, Firefox ESR"
 
 gulp.task("pug", function() {
   return gulp.src(paths.src.pug)
-    .pipe(pug())
+    .pipe(pug({
+      pretty: true
+    }))
     .on('error', notify.onError({
       message: "Pug error: <%= error.message %>",
       title: "Pug error"
@@ -113,12 +115,16 @@ gulp.task("static", function() {
 //     });
 // }
 
+gulp.task("clean", function(done) {
+  return del("docs/**/*", done);
+});
+
 gulp.task("watch", function() {
   // ["pug", "babel", "sass", "static"].forEach(makeWatcher);
-  gulp.watch(paths.src.pug, ["pug"]);
-  gulp.watch(paths.src.babel, ["babel"]);
-  gulp.watch(paths.src.sass, ["sass"]);
-  gulp.watch(paths.src.static, ["static"]);
+  gulp.watch(paths.src.pug, gulp.task("pug"));
+  gulp.watch(paths.src.babel, gulp.task("babel"));
+  gulp.watch(paths.src.sass, gulp.task("sass"));
+  // gulp.watch(paths.src.static, ["static"]);
 });
 
 gulp.task("sync", function() {
@@ -129,6 +135,10 @@ gulp.task("sync", function() {
   });
 });
 
-gulp.task("build", ["pug", "babel", "sass", "static"]);
+gulp.task("build",
+  gulp.series("clean",
+    gulp.parallel("pug", "babel", "sass", "static")));
 
-gulp.task("default", ["build", "watch", "sync"]);
+gulp.task("default", 
+  gulp.series("build",
+    gulp.parallel("watch", "sync")));
