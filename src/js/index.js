@@ -63,8 +63,8 @@ class GooeyTransitionReverse extends GooeyTransition {
     this.gap = -this.gap;
   }
   getPath(easeQuad, easeQuart) {
-    easeQuad += 78.5;
-    easeQuart += 78.5;
+    easeQuad += 76;
+    easeQuart += 76;
     return `
       M 0 100
       V ${easeQuart}
@@ -83,8 +83,8 @@ const contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function() {
   // statically render gooey transition
-  landingTransition.render(0.72);
-  contactTransition.render(0.833);
+  landingTransition.render(0.75);
+  contactTransition.render(0.8333);
 
   // window.print();
 });

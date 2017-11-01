@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo|Nunito:200,300,400,600,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Baloo|Nunito:200,300,400,600,800');
 
 // $hue-primary: 255; //degrees
 // $sat-primary: 67%;
@@ -27,7 +27,7 @@ $drop-shadow-small: 0 0.2em;
 
 body {
   font: 12pt $font-primary;
-  line-height: 13pt * 4/3;
+  line-height: 12pt * 3/2;
 }
 
 .page {
@@ -48,6 +48,30 @@ body {
   height: 10in;
   margin: 0.5in;
   border: 1px #CCCCCC dotted;
+}
+
+.page-footer {
+  z-index: 150;
+  position: absolute;
+  top: 10.5in;
+  width: 7.5in;
+  height: 0.5in;
+  margin: 0 0.5in;
+  padding-top: 0.05in;
+
+  font: 10pt "Open Sans";
+
+  .page-number {
+    float: left;
+  }
+  .version-number {
+    color: #999999;
+    float: right;
+  }
+}
+
+.negative-text {
+  color: white;
 }
 
 .page-break-fix {
@@ -155,7 +179,7 @@ svg {
 }
 
 .after-landing {
-  margin-top: 10in * 1/6;
+  margin-top: 2in;
 }
 
 // #about {
@@ -235,21 +259,21 @@ section {
   }
 }
 
-#tier-descriptions {
-  font-size: 11pt;
-  line-height: 11.5pt * 4/3;
-  p.short {
-    margin-bottom: 8pt;
-  }
-  .price {
-    font-weight: 200;
-    margin-left: 0.5em;
-  }
-}
+// #tier-descriptions {
+//   font-size: 11pt;
+//   line-height: 11.5pt * 4/3;
+//   p.short {
+//     margin-bottom: 8pt;
+//   }
+//   .price {
+//     font-weight: 200;
+//     margin-left: 0.5em;
+//   }
+// }
 
 #contact {
   z-index: 300;
-  // font: 300 16pt $font-primary;
+  font: 13pt $font-primary;
   color: white;
   margin-top: 1.15in;
   a {

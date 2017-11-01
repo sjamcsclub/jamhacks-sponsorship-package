@@ -14,7 +14,8 @@ var ease = {
   },
   quarticOut: function quarticOut(t) {
     return -Math.pow(t - 1, 4) + 1;
-  } };
+  } //TODO: Try InOut (http://gizma.com/easing/)
+};
 
 var mathx = {
   clamp: function clamp(x, min, max) {
@@ -23,10 +24,9 @@ var mathx = {
   scale: function scale(x, inLow, inHigh, outLow, outHigh) {
     return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
   }
-};
 
-// Test if we're on mobile
-var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // Test if we're on mobile
+};var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 var GooeyTransition = function () {
   function GooeyTransition(svg) {
@@ -83,8 +83,8 @@ var GooeyTransitionReverse = function (_GooeyTransition) {
   _createClass(GooeyTransitionReverse, [{
     key: "getPath",
     value: function getPath(easeQuad, easeQuart) {
-      easeQuad += 78.5;
-      easeQuart += 78.5;
+      easeQuad += 76;
+      easeQuart += 76;
       return "\n      M 0 100\n      V " + easeQuart + "\n      Q 12.5 " + easeQuart + " 25 " + easeQuad + "\n      T 50 " + easeQuad + "\n      T 75 " + easeQuad + "\n      T 100 " + easeQuart + "\n      V 100\n    ";
     }
   }]);
@@ -100,8 +100,8 @@ var contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function () {
   // statically render gooey transition
-  landingTransition.render(0.72);
-  contactTransition.render(0.833);
+  landingTransition.render(0.75);
+  contactTransition.render(0.8333);
 
   // window.print();
 });

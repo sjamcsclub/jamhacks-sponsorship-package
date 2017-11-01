@@ -1,3 +1,7 @@
+- isoDate = new Date().toISOString().slice(0, 10)
+// - versionNumber = isoDate
+- versionNumber = "v0 " + isoDate
+
 mixin mailto(email)
   a(href="mailto:"+email)= email
 
@@ -40,27 +44,41 @@ html
           .landing-logo
             img(src="img/JAMHacks.svg" alt="JAMHacks")
           .landing-text
-            h1 JAMHacks Sponsorship
-            h3 #[span.date April 9, 2017] #[span.time 9am&ndash;9pm]
+            h1 Sponsorship Package
+            h3 #[span.date April 14&ndash;15, 2018]
+            //- #[span.time 9pm&ndash;9pm]
             h3 Sir John A. Macdonald Secondary School #[br] Waterloo, Ontario
             h2 
-              a(href="https://jamhacks.ca/") jamhacks.ca #[br]
               +mailto("sponsor@jamhacks.ca")
 
         .after-landing
           section
             h2 What is JAMHacks?
-            p JAMHacks is Waterloo's first high school hackathon. On April 9th, we are bringing together approximately 100 students from high schools all over Ontario for 12 hours of learning, creating and innovating. Participants ("hackers") will get the entire 12 hours to invent and build a software or hardware project, and then show it off to a panel of judges as well as their fellow hackers. 
-            p As a high school hackathon, our aim is to inspire more high school students to explore innovative careers in technology. Your company can help us show them what "Waterloo innovation" is all about.
-          section
-            h2 Why Sponsor JAMHacks?
-            p #[b Connect with young computer scientists.] For many participants, JAMHacks will be their first hackathon, a special and unforgettable experience. This is a unique opportunity for you to make an early impression on our participants.
-            p #[b Branding and Exposure.] Your company will be recognised for supporting the next generation of developers and makers. Additionally, if you bring your API or hardware product, participants will get firsthand experience with your product and are likely to keep using it in the future. 
-            p #[b Recruit.] We are gathering Waterloo Region's brightest and most talented young developers and engineers into one place, and giving them a perfect environment to demonstrate their skills. See our available perks for recruiting below or contact us—Everything is negotiable.
-            p Note: Monetary contributions are tax deductible through the Waterloo Education Foundation Inc., a registered charitable foundation which is part of the Waterloo Region District School Board.
+            p JAMHacks 2 will be Waterloo's biggest high school hackathon yet! On April 14-15, we are bringing together 200 students from high schools all over Ontario for a full weekend of learning, creating and innovating. Participants ("hackers") will get the entire 24 hours to invent and build a software or hardware project, and then show it off to a panel of judges as well as their fellow hackers.
+            p As a high school hackathon, our mission is to inspire more high school students to explore and pursue truly innovative projects and careers in technology. With your help, we can show them firsthand why Waterloo is internationally recognized for innovation.
+      .page-footer
+        .page-number 1
+        .version-number= versionNumber
 
     .page
       .page-break-fix &nbsp;
+      .inner-page
+        section
+          h2 Why Sponsor JAMHacks?
+          p #[b Connect with young computer scientists.] For many participants, JAMHacks will be their first hackathon, a special and unforgettable experience. This is a unique opportunity for you to make an early impression on our participants.
+          p #[b Branding and Exposure.] You will be recognised for supporting the next generation of developers and makers. Additionally, if you bring your API or product, participants will get firsthand experience with your product and are likely to continue using it in the future.
+          p #[b Recruit.] We are gathering Waterloo Region's brightest and most talented young developers and engineers into one place, and giving them a perfect environment to demonstrate their skills. See our available perks for recruiting below or contact us—Everything is negotiable.
+          p Note: Monetary contributions are tax deductible through the Waterloo Education Foundation Inc., a registered charitable foundation which is part of the Waterloo Region District School Board.
+        section
+          h2 Past Events
+          p In April 2017, we hosted JAMHacks, Waterloo's first hackathon organized entirely by high school students, for high school students. Over 100 students, some from as far as Toronto, Mississauga and Windsor, came out for the 12-hour event. Even in such a short amount of time, our hackers created a wide array of impressive projects, such as a #[a(href="https://devpost.com/software/e-tabula") light-up chessboard].
+          //- Also workshops * see SYNK's devpost
+      .page-footer
+        .page-number 2
+        //- .version-number= versionNumber
+
+
+    .page
       .inner-page
         section#tier-table
           //- h1 Sponsorship Tiers
@@ -71,23 +89,17 @@ html
                 td.tier-name Peach
                 td.tier-name Grape
                 td.tier-name Strawberry
-                td.tier-name Blueberry (Co-Host)
+                td.tier-name Blueberry (Co-Host)*
               tr.first-of-section
                 td.perk(colspan="3") Amount (or equivalent goods/services)
-                td $400
-                td $800
-                td $1600
+                td $500
+                td $1000
+                td $2000
                 td $4000
               tr.first-of-section
                 td.subheading(colspan="7") Your Branding
               tr.first-of-section
-                td.perk(colspan="3") Logo on Website and Posters
-                td Small
-                td Medium
-                td Large
-                td Huge
-              tr
-                td.perk(colspan="3") Logo on T-Shirts (if funding permits)
+                td.perk(colspan="3") Logo on Website and T-Shirts
                 td Small
                 td Medium
                 td Large
@@ -111,24 +123,24 @@ html
                 td &#10004;
                 td &#10004;
               tr
-                td.perk(colspan="3") Meal Sponsored by [You]*
+                td.perk(colspan="3") Logo on Posters and Other Promotional Material
                 td 
                 td 
                 td &#10004;
-                td 
+                td &#10004;
               tr
-                td.perk(colspan="3") JAMHacks, Co-Hosted by [You]**
+                td.perk(colspan="3") JAMHacks, Co-Hosted by [You]
                 td 
                 td 
                 td 
-                td &#10004
+                td &#10004;
               tr.first-of-section
                 td.subheading(colspan="7") Your Involvement
               tr.first-of-section
                 td.perk(colspan="3") Send Mentors/Evangelists
                 td Max. 1
-                td Max. 2
                 td Max. 3
+                td Unlimited
                 td Unlimited
               tr
                 td.perk(colspan="3") Sponsor Booth
@@ -143,7 +155,7 @@ html
                 td &#10004;
                 td &#10004;
               tr
-                td.perk(colspan="3") Direct involvement in planning
+                td.perk(colspan="3") Direct Involvement in Planning
                 td 
                 td 
                 td 
@@ -153,13 +165,13 @@ html
                 td 
                 td 
                 td 
-                td &#10004
+                td ✔
               tr.first-of-section
                 td.subheading(colspan="7") Your Products
               tr.first-of-section
                 td.perk(colspan="3") Demo or Talk at Opening Ceremony
                 td 
-                td Short #[br] &nbsp;&nbsp;&nbsp;&nbsp;(2&nbsp;min)***
+                td Short #[br] &nbsp;&nbsp;(2&nbsp;min)**
                 td Short #[br] (2&nbsp;min)
                 td Long #[br] (5&nbsp;min)
               tr
@@ -172,7 +184,7 @@ html
                 td.perk(colspan="3") Custom Award (ex. API Prize)
                 td 
                 td 
-                td &#10004
+                td &#10004;
               tr.first-of-section
                 td.subheading(colspan="7") Recruiting
               tr.first-of-section
@@ -191,13 +203,14 @@ html
                 td.perk(colspan="3") Send Email to All Participants
                 td 
                 td 
-                td 1
-                td 2
+                td &#10004;
+                td &#10004;
 
           p.footnotes.
-            *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Available to first two Strawberry sponsors only. #[br]
-            **&nbsp;&nbsp;&nbsp;Available to first Blueberry sponsor only. #[br]
-            ***&nbsp;If time permits. #[br]
+            &nbsp;*&nbsp;Maximum 1 sponsor at Blueberry tier. #[br]
+      .page-footer
+        .page-number 3
+        //- .version-number= versionNumber
 
     //- .page
       .page-break-fix &nbsp;
@@ -273,7 +286,10 @@ html
           p This could be an API prize ("Best use of [Your API]"), or it could be a more general prize, like "Best Hardware Hack" or "Best Environmental Impact Hack". You will provide the reward but we will credit the value of your reward (cash value or equivalent retail value) towards your sponsorship contribution, up to a maximum of $500. If you wish to provide an intangible reward, we can discuss how to credit it towards your sponsorship.
         section#contact
           h2 Interested?
-          p Send us an email at #[+mailto("sponsor@jamhacks.ca")]. All sponsorships are negotiable and we would be more than happy to discuss details, or work out a custom sponsorship opportunity for you.
+          p Send us an email at #[+mailto("sponsor@jamhacks.ca")]. All sponsorships are negotiable and we would be more than happy to discuss details, or work out a custom sponsorship opportunity for you!
+      .page-footer.negative-text
+        .page-number 4
+        //- .version-number= versionNumber
 
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")

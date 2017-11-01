@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Baloo|Nunito:200,300,400,600,800");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Baloo|Nunito:200,300,400,600,800");
 @page {
   size: letter;
   margin: 0; }
 
 body {
   font: 12pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
-  line-height: 17.33333pt; }
+  line-height: 18pt; }
 
 .page {
   position: relative;
@@ -24,6 +24,24 @@ body {
   height: 10in;
   margin: 0.5in;
   border: 1px #CCCCCC dotted; }
+
+.page-footer {
+  z-index: 150;
+  position: absolute;
+  top: 10.5in;
+  width: 7.5in;
+  height: 0.5in;
+  margin: 0 0.5in;
+  padding-top: 0.05in;
+  font: 10pt "Open Sans"; }
+  .page-footer .page-number {
+    float: left; }
+  .page-footer .version-number {
+    color: #999999;
+    float: right; }
+
+.negative-text {
+  color: white; }
 
 .page-break-fix {
   visibility: hidden; }
@@ -102,7 +120,7 @@ svg {
         text-decoration: underline; }
 
 .after-landing {
-  margin-top: 1.66667in; }
+  margin-top: 2in; }
 
 section h1 {
   font: 300 24pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
@@ -141,17 +159,9 @@ section h3 {
 #tier-table p.footnotes {
   margin-top: 16pt; }
 
-#tier-descriptions {
-  font-size: 11pt;
-  line-height: 15.33333pt; }
-  #tier-descriptions p.short {
-    margin-bottom: 8pt; }
-  #tier-descriptions .price {
-    font-weight: 200;
-    margin-left: 0.5em; }
-
 #contact {
   z-index: 300;
+  font: 13pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
   color: white;
   margin-top: 1.15in; }
   #contact a {
