@@ -4,7 +4,8 @@
   margin: 0; }
 
 body {
-  font: 12pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+  font-family: "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+  font-size: 12pt;
   line-height: 18pt; }
 
 .page {
@@ -46,7 +47,7 @@ body {
 .page-break-fix {
   visibility: hidden; }
 
-a {
+.inline-link {
   color: #6554be;
   font-weight: 600; }
 
@@ -65,7 +66,10 @@ a {
   .inner-page {
     border: initial; }
   h1::first-letter, h2::first-letter, h3::first-letter, h4::first-letter, h5::first-letter, h6::first-letter {
-    padding: 0; } }
+    padding: 0; }
+  .inline-link {
+    color: inherit;
+    font-weight: inherit; } }
 
 svg {
   z-index: 100;
@@ -83,13 +87,20 @@ svg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between; }
+          justify-content: space-between;
+  height: 50%; }
   .landing .landing-logo img {
+    position: relative;
+    left: 13%;
     width: 3.75in; }
   .landing .landing-text {
     display: -webkit-box;
@@ -110,7 +121,7 @@ svg {
       color: white;
       margin-bottom: 8pt; }
     .landing .landing-text h1 {
-      font: 700 24pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
+      font: 700 36pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
     .landing .landing-text h3 {
       font: 300 14pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif; }
       .landing .landing-text h3 .time {
@@ -124,7 +135,16 @@ svg {
         text-decoration: underline; }
 
 .after-landing {
-  margin-top: 2in; }
+  margin-top: 1.75in; }
+
+#about {
+  font-size: 13pt;
+  line-height: 19.5pt; }
+
+.aside-photo {
+  width: 80%;
+  margin-top: 2%;
+  margin-left: 10%; }
 
 section h1 {
   font: 300 24pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
@@ -161,13 +181,14 @@ section h3 {
     border-bottom: 1px solid #D8D8D8; }
 
 #tier-table p.footnotes {
-  margin-top: 16pt; }
+  margin-top: 0.25in; }
 
 #contact {
   z-index: 300;
-  font: 13pt "Nunito", "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+  font-size: 13pt;
+  line-height: 19.5pt;
   color: white;
-  margin-top: 1.15in; }
+  margin-top: 1.05in; }
   #contact a {
     color: white;
     text-decoration: underline; }

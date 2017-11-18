@@ -26,7 +26,8 @@ $drop-shadow-small: 0 0.2em;
 }
 
 body {
-  font: 12pt $font-primary;
+  font-family: $font-primary;
+  font-size: 12pt;
   line-height: 12pt * 3/2;
 }
 
@@ -78,7 +79,7 @@ body {
   visibility: hidden;
 }
 
-a {
+.inline-link {
   color: $color-primary-light;
   font-weight: 600;
 }
@@ -104,6 +105,10 @@ a {
     &::first-letter {
       padding: 0;
     }
+  }
+  .inline-link {
+    color: inherit;
+    font-weight: inherit;
   }
 }
 
@@ -136,12 +141,14 @@ svg {
   // position: absolute;
   // top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  height: 50%;
 
   .landing-logo img {
-    // position: relative;
-    // left: 10%;
+    position: relative;
+    left: 13%;
     width: 7.5in * 1/2;
     // margin-bottom: 2rem;
   }
@@ -161,7 +168,7 @@ svg {
       margin-bottom: 8pt;
     }
     h1 {
-      font: 700 24pt $font-primary;
+      font: 700 36pt $font-primary;
     }
     h3 {
       font: 300 14pt $font-primary;
@@ -184,7 +191,12 @@ svg {
 }
 
 .after-landing {
-  margin-top: 2in;
+  margin-top: 1.75in;
+}
+
+#about {
+  font-size: 13pt;
+  line-height: 13pt * 3/2;
 }
 
 // #about {
@@ -203,6 +215,12 @@ svg {
 //     padding-left: 0;
 //   }
 // }
+
+.aside-photo {
+  width: 80%;
+  margin-top: 2%;
+  margin-left: 10%;
+}
 
 section {
   h1 {
@@ -260,7 +278,7 @@ section {
   }
 
   p.footnotes {
-    margin-top: 16pt;
+    margin-top: 0.25in;
   }
 }
 
@@ -278,9 +296,10 @@ section {
 
 #contact {
   z-index: 300;
-  font: 13pt $font-primary;
+  font-size: 13pt;
+  line-height: 13pt * 3/2;
   color: white;
-  margin-top: 1.15in;
+  margin-top: 1.05in;
   a {
     color: white;
       text-decoration: underline;

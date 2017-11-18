@@ -27,8 +27,6 @@ class GooeyTransition {
     this.gap = 0.05;
   }
   getPath(easeQuad, easeQuart) {
-    easeQuad += 27.5;
-    easeQuart += 27.5;
     return `
       M 0 0
       V ${easeQuart}
@@ -39,11 +37,11 @@ class GooeyTransition {
       V 0
     `;
   }
-  render(t) {
-    var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100);
-    var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100);
-    var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100);
-    var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100);
+  render(t, offset) {
+    var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100) + offset;
+    var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100) + offset;
+    var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100) + offset;
+    var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100) + offset;
     
     var svgHeight = this.svg.parent().height()+5;
     this.svg.css("height", svgHeight);
@@ -63,8 +61,6 @@ class GooeyTransitionReverse extends GooeyTransition {
     this.gap = -this.gap;
   }
   getPath(easeQuad, easeQuart) {
-    easeQuad += 76;
-    easeQuart += 76;
     return `
       M 0 100
       V ${easeQuart}
@@ -83,8 +79,8 @@ const contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function() {
   // statically render gooey transition
-  landingTransition.render(0.75);
-  contactTransition.render(0.8333);
+  landingTransition.render(0.72, 50);
+  contactTransition.render(0.8333, 77);
 
   // window.print();
 });

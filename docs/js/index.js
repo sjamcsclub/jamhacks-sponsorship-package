@@ -41,17 +41,15 @@ var GooeyTransition = function () {
   _createClass(GooeyTransition, [{
     key: "getPath",
     value: function getPath(easeQuad, easeQuart) {
-      easeQuad += 27.5;
-      easeQuart += 27.5;
       return "\n      M 0 0\n      V " + easeQuart + "\n      Q 12.5 " + easeQuart + " 25 " + easeQuad + "\n      T 50 " + easeQuad + "\n      T 75 " + easeQuad + "\n      T 100 " + easeQuart + "\n      V 0\n    ";
     }
   }, {
     key: "render",
-    value: function render(t) {
-      var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100);
-      var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100);
-      var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100);
-      var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100);
+    value: function render(t, offset) {
+      var easeQuad = mathx.scale(ease.quadraticOut(t), 1, 0, 0, 100) + offset;
+      var easeQuart = mathx.scale(ease.quarticOut(t), 1, 0, 0, 100) + offset;
+      var easeQuad2 = mathx.scale(ease.quadraticOut(t + this.gap), 1, 0, 0, 100) + offset;
+      var easeQuart2 = mathx.scale(ease.quarticOut(t + this.gap), 1, 0, 0, 100) + offset;
 
       var svgHeight = this.svg.parent().height() + 5;
       this.svg.css("height", svgHeight);
@@ -83,8 +81,6 @@ var GooeyTransitionReverse = function (_GooeyTransition) {
   _createClass(GooeyTransitionReverse, [{
     key: "getPath",
     value: function getPath(easeQuad, easeQuart) {
-      easeQuad += 76;
-      easeQuart += 76;
       return "\n      M 0 100\n      V " + easeQuart + "\n      Q 12.5 " + easeQuart + " 25 " + easeQuad + "\n      T 50 " + easeQuad + "\n      T 75 " + easeQuad + "\n      T 100 " + easeQuart + "\n      V 100\n    ";
     }
   }]);
@@ -100,8 +96,8 @@ var contactTransition = new GooeyTransitionReverse("#contact-transition");
 
 $(function () {
   // statically render gooey transition
-  landingTransition.render(0.75);
-  contactTransition.render(0.8333);
+  landingTransition.render(0.72, 50);
+  contactTransition.render(0.8333, 77);
 
   // window.print();
 });
